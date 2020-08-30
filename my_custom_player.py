@@ -66,4 +66,4 @@ class CustomPlayer(DataPlayer):
         opp_loc = state.locs[1 - self.player_id]
         own_liberties = state.liberties(own_loc)
         opp_liberties = state.liberties(opp_loc)
-        return len(own_liberties) - (len(opp_liberties) * 4)
+        return len(own_liberties) - (len(opp_liberties) * 3)
