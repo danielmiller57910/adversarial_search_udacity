@@ -11,6 +11,7 @@ BETA_DEFAULT=float("+inf")
 class CustomPlayer(DataPlayer):
 
     def get_action(self, state):
+        alpha_value = ALPHA_DEFAULT
         if state.ply_count < 2:
             # random state required due to large depth of tree at initial state
             self.queue.put(random.choice(state.actions()))
@@ -18,9 +19,10 @@ class CustomPlayer(DataPlayer):
             optimal_action = None
             optimal_value = float("-inf")
             for action in state.actions():
-                candidate = self.min_value(state.result(action), 4, MAXIMIZER, ALPHA_DEFAULT, BETA_DEFAULT)
+                candidate = self.min_value(state.result(action), 4, MAXIMIZER, alpha_value, BETA_DEFAULT)
                 if candidate > optimal_value:
                     optimal_action = action
+                alpha_value = max(alpha_value, candidate)
             if optimal_action:
                 self.queue.put(optimal_action)
             else:
