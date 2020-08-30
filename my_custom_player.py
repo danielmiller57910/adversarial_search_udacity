@@ -19,7 +19,7 @@ class CustomPlayer(DataPlayer):
             optimal_action = None
             optimal_value = float("-inf")
             for action in state.actions():
-                candidate = self.min_value(state.result(action), 4, MAXIMIZER, alpha_value, BETA_DEFAULT)
+                candidate = self.min_value(state.result(action), 5, MAXIMIZER, alpha_value, BETA_DEFAULT)
                 if candidate > optimal_value:
                     optimal_action = action
                 alpha_value = max(alpha_value, candidate)
@@ -66,4 +66,4 @@ class CustomPlayer(DataPlayer):
         opp_loc = state.locs[1 - self.player_id]
         own_liberties = state.liberties(own_loc)
         opp_liberties = state.liberties(opp_loc)
-        return len(own_liberties) - (len(opp_liberties) * 3)
+        return len(own_liberties) - (len(opp_liberties) * 4)
