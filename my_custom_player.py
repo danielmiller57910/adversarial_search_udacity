@@ -20,27 +20,24 @@ class CustomPlayer(DataPlayer):
     **********************************************************************
     """
     def get_action(self, state):
-        """ Employ an adversarial search technique to choose an action
-        available in the current state calls self.queue.put(ACTION) at least
+        for action in state.actions():
+            optimal_value = max(float("-inf"), self.max_action(state.result(action), self.player_id))
+            print("OPTIMAL VALUE")
+        self.queue.put(optimal_value)
 
-        This method must call self.queue.put(ACTION) at least once, and may
-        call it as many times as you want; the caller will be responsible
-        for cutting off the function after the search time limit has expired.
+    def min_action(self, state, player_id):
+        if state.terminal_test():
+            print("TERMINAL TEST MIN", state.utility(player_id))
+            return state.utility(player_id)
 
-        See RandomPlayer and GreedyPlayer in sample_players for more examples.
+        for a in state.actions():
+            value = min(float("inf"), self.max_action(state.result(a), player_id))
+        return value
 
-        **********************************************************************
-        NOTE: 
-        - The caller is responsible for cutting off search, so calling
-          get_action() from your own code will create an infinite loop!
-          Refer to (and use!) the Isolation.play() function to run games.
-        **********************************************************************
-        """
-        # TODO: Replace the example implementation below with your own search
-        #       method by combining techniques from lecture
-        #
-        # EXAMPLE: choose a random move without any search--this function MUST
-        #          call self.queue.put(ACTION) at least once before time expires
-        #          (the timer is automatically managed for you)
-        import random
-        self.queue.put(random.choice(state.actions()))
+    def max_action(self, state, player_id):
+        if state.terminal_test():
+            print("TERMINAL TEST MAX", state.utility(player_id))
+            return state.utility(player_id)
+        for a in state.actions():
+            value = max(float("-inf"), self.min_action(state.result(a), player_id))
+        return value
