@@ -43,13 +43,16 @@ class CustomPlayer(DataPlayer):
         if state.ply_count < 2:
             self.queue.put(random.choice(state.actions()))
         else:
+            optimal_action = None
             optimal_value = float("-inf")
             for action in state.actions():
                 candidate = self.min_value(state, 3)
                 if candidate > optimal_value:
                     optimal_action = action
-            
-            self.queue.put(optimal_action)
+            if optimal_action:
+                self.queue.put(optimal_action)
+            else:
+                self.queue.put(action)
 
     def min_value(self, state, depth):
         if state.terminal_test(): return state.utility(self.player_id)
