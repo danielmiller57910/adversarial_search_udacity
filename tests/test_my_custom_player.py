@@ -22,30 +22,30 @@ class BaseCustomPlayerTest(unittest.TestCase):
         self.terminal_state = terminal_state
 
 
-# class CustomPlayerGetActionTest(BaseCustomPlayerTest):
-#     def _test_state(self, state):
-#         agent = CustomPlayer(state.ply_count % 2)
-#         action = fork_get_action(state, agent, self.time_limit)
-#         self.assertTrue(action in state.actions(), dedent("""\
-#             Your agent did not call self.queue.put() with a valid action \
-#             within {} milliseconds from state {}
-#         """).format(self.time_limit, state))
+class CustomPlayerGetActionTest(BaseCustomPlayerTest):
+    def _test_state(self, state):
+        agent = CustomPlayer(state.ply_count % 2)
+        action = fork_get_action(state, agent, self.time_limit)
+        self.assertTrue(action in state.actions(), dedent("""\
+            Your agent did not call self.queue.put() with a valid action \
+            within {} milliseconds from state {}
+        """).format(self.time_limit, state))
 
-#     def test_get_action_player1(self):
-#         """ get_action() calls self.queue.put() before timeout on an empty board """
-#         self._test_state(self.move_0_state)
+    def test_get_action_player1(self):
+        """ get_action() calls self.queue.put() before timeout on an empty board """
+        self._test_state(self.move_0_state)
 
-    # def test_get_action_player2(self):
-    #     """ get_action() calls self.queue.put() before timeout as player 2 """
-    #     self._test_state(self.move_1_state)
+    def test_get_action_player2(self):
+        """ get_action() calls self.queue.put() before timeout as player 2 """
+        self._test_state(self.move_1_state)
 
-    # def test_get_action_midgame(self):
-    #     """ get_action() calls self.queue.put() before timeout in a game in progress """
-    #     self._test_state(self.move_2_state)
+    def test_get_action_midgame(self):
+        """ get_action() calls self.queue.put() before timeout in a game in progress """
+        self._test_state(self.move_2_state)
 
-    # def test_get_action_terminal(self):
-    #     """ get_action() calls self.queue.put() before timeout when the game is over """
-    #     self._test_state(self.terminal_state)
+    def test_get_action_terminal(self):
+        """ get_action() calls self.queue.put() before timeout when the game is over """
+        self._test_state(self.terminal_state)
 
 
 class CustomPlayerPlayTest(BaseCustomPlayerTest):
