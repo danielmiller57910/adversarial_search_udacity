@@ -1,6 +1,10 @@
 
 from sample_players import DataPlayer
-
+import random
+import pdb
+from isolation import DebugState
+import time
+# https://github.com/alex-modyil/Udacity-AIND/blob/master/3.%20Build%20a%20Game%20Playing%20Agent/my_custom_player.py -> compare
 
 class CustomPlayer(DataPlayer):
     """ Implement your own agent to play knight's Isolation
@@ -20,24 +24,44 @@ class CustomPlayer(DataPlayer):
     **********************************************************************
     """
     def get_action(self, state):
+        current = float("-inf")
+        optimal_action = None
         for action in state.actions():
-            optimal_value = max(float("-inf"), self.max_action(state.result(action), self.player_id))
-            print("OPTIMAL VALUE")
-        self.queue.put(optimal_value)
+            print(action, state.liberties(action))
+        print(DebugState.from_state(state))
+        self.queue.put(random.choice(state.actions()))
 
-    def min_action(self, state, player_id):
+    
+          
+    def min_action(self, state, depth):
+        # print("MIN ACTION")
+        # print([a for a in state.actions()])
+        # print(random.choice(state.actions()))
+        value = float("inf")
         if state.terminal_test():
-            print("TERMINAL TEST MIN", state.utility(player_id))
-            return state.utility(player_id)
-
+            return state.utility(self.player_id)
+        if depth <= 0:
+            return self.score(state)
         for a in state.actions():
-            value = min(float("inf"), self.max_action(state.result(a), player_id))
+            value = min(value, self.max_action(state.result(a), depth-1))
         return value
 
-    def max_action(self, state, player_id):
+    def max_action(self, state, depth):
+        # print("MAX ACTION")
+        # print([a for a in state.actions()])
+        # print(random.choice(state.actions()))
+        value = float("-inf")
         if state.terminal_test():
-            print("TERMINAL TEST MAX", state.utility(player_id))
-            return state.utility(player_id)
+            return state.utility(self.player_id)
+        if depth <= 0:
+            return self.score(state)
         for a in state.actions():
-            value = max(float("-inf"), self.min_action(state.result(a), player_id))
+            value = max(value, self.min_action(state.result(a), depth-1))
         return value
+
+    def score(self, state):
+        own_loc = state.locs[self.player_id]
+        opp_loc = state.locs[1 - self.player_id]
+        own_liberties = state.liberties(own_loc)
+        opp_liberties = state.liberties(opp_loc)
+        return len(own_liberties) - len(opp_liberties)
