@@ -14,6 +14,7 @@ from multiprocessing.pool import ThreadPool as Pool
 from isolation import Isolation, Agent, play
 from sample_players import RandomPlayer, GreedyPlayer, MinimaxPlayer
 from my_custom_player import CustomPlayer
+import os
 
 logger = logging.getLogger(__name__)
 
@@ -193,4 +194,8 @@ if __name__ == "__main__":
         "Debug Mode: {}".format(args.debug)
     )
 
-    main(args)
+    for i in [1, 2, 3, 4, 5]:
+        os.environ['OPP_LIBERTY_PENALIZE'] = str(i)
+        print("Opponent Move multiplier", os.environ['OPP_LIBERTY_PENALIZE'])
+        for i in range(5):
+            main(args)

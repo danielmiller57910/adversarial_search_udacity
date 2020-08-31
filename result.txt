@@ -1,0 +1,105 @@
+Opponent Move multiplier 1
+Running 10 games:
+-------+++
+Your agent won 30.0% of matches against Minimax Agent
+
+Running 10 games:
+--+--+-+--
+Your agent won 30.0% of matches against Minimax Agent
+
+Running 10 games:
+------+--+
+Your agent won 20.0% of matches against Minimax Agent
+
+Running 10 games:
+--+-+--+-+
+Your agent won 40.0% of matches against Minimax Agent
+
+Running 10 games:
+--+-----++
+Your agent won 30.0% of matches against Minimax Agent
+
+Opponent Move multiplier 2
+Running 10 games:
++--++++-++
+Your agent won 70.0% of matches against Minimax Agent
+
+Running 10 games:
+-+--+---+-
+Your agent won 30.0% of matches against Minimax Agent
+
+Running 10 games:
+---+---++--
+Your agent won 30.0% of matches against Minimax Agent
+
+Running 10 games:
+----------
+Your agent won 0.0% of matches against Minimax Agent
+
+Running 10 games:
++++-+++++-
+Your agent won 80.0% of matches against Minimax Agent
+
+Opponent Move multiplier 3
+Running 10 games:
+------+---
+Your agent won 10.0% of matches against Minimax Agent
+
+Running 10 games:
+----+--+--
+Your agent won 20.0% of matches against Minimax Agent
+
+Running 10 games:
+--------+-
+Your agent won 10.0% of matches against Minimax Agent
+
+Running 10 games:
++-+-+-++--
+Your agent won 50.0% of matches against Minimax Agent
+
+Running 10 games:
+-+-----++-
+Your agent won 30.0% of matches against Minimax Agent
+
+Opponent Move multiplier 4
+Running 10 games:
+++---+---+
+Your agent won 40.0% of matches against Minimax Agent
+
+Running 10 games:
+--------+-
+Your agent won 10.0% of matches against Minimax Agent
+
+Running 10 games:
+----+--+-+
+Your agent won 30.0% of matches against Minimax Agent
+
+Running 10 games:
++--+-----+
+Your agent won 30.0% of matches against Minimax Agent
+
+Running 10 games:
++--+----++
+Your agent won 40.0% of matches against Minimax Agent
+
+Opponent Move multiplier 5
+Running 10 games:
++++-------
+Your agent won 30.0% of matches against Minimax Agent
+
+Running 10 games:
++-+++--+--
+Your agent won 50.0% of matches against Minimax Agent
+
+Running 10 games:
++--+----++
+Your agent won 40.0% of matches against Minimax Agent
+
+Running 10 games:
+--++--+--+
+Your agent won 40.0% of matches against Minimax Agent
+
+Running 10 games:
+---+-++--+
+Your agent won 40.0% of matches against Minimax Agent
+
